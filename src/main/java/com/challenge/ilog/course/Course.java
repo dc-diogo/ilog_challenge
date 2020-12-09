@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Course {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Integer  courseId;
 
@@ -22,8 +22,7 @@ public class Course {
     @Column(name = "price")
     private Double coursePrice;
 
-    public Course(Integer courseId, String courseName, String courseDescription, int duration, Double coursePrice) {
-        this.courseId = courseId;
+    public Course(String courseName, String courseDescription, int duration, Double coursePrice) {
         this.courseName = courseName;
         this.courseDescription = courseDescription;
         this.duration = duration;
