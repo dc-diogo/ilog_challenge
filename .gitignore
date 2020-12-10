@@ -35,3 +35,33 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/frontend-app/dist
+/frontend-app/tmp
+/frontend-app/out-tsc
+# Only exists if Bazel was run
+/frontend-app/bazel-out
+
+# dependencies
+/frontend-app/node_modules
+
+# profiling files
+/frontend-app/chrome-profiler-events*.json
+/frontend-app/speed-measure-plugin*.json
+
+# misc
+/frontend-app/.sass-cache
+/frontend-app/connect.lock
+/frontend-app/coverage
+/frontend-app/libpeerconnection.log
+/frontend-app/npm-debug.log
+/frontend-app/yarn-error.log
+/frontend-app/testem.log
+/frontend-app/typings
+
+# System Files
+/frontend-app/.DS_Store
+/frontend-app/Thumbs.db
