@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(path="/course")
+@CrossOrigin("*")
 public class CourseController {
 
     @Autowired

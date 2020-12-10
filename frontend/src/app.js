@@ -13,16 +13,12 @@ angular
                     templateUrl: 'courses/course.list.html',
                     controller: 'CourseController',
                 })
-                .state("users", {
+
+                .state("users",{
                     url:'/users',
                     templateUrl: 'users/user.list.html',
                     controller: 'UserController',
                 })
-                // .state("viewB", {
-                //     url:'/viewB',
-                //     templateUrl: 'view.html',
-                //     controller: 'ctrlB',
-                // });
         }
     ]);
 

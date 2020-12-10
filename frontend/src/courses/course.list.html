@@ -1,11 +1,55 @@
-<div>
-    <input ng-model="courseName"><input>
-    <input ng-model="courseDescription"><input>
-    <input ng-model="courseDuration"><input>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID </th>
+        <th>Nome</th>
+        <th>Duração</th>
+        <th>Preço</th>
+        <th>Descrição</th>
+    </tr>
+    </thead>
+    <tbody id="courseTable">
+
+    </tbody>
+</table>
 
 
-    Course Controller
-    <div ng-repeat="course in courseList">
-        {{course.courseName}}
+<form class="form-horizontal" ng-submit="save()" role="form">
+    <div class="form-group">
+        <label for="courseName" class="col-sm-3 control-label" ng-required="true">Nome do Curso</label>
+        <div class="col-sm-6">
+            <input type="text" id="courseName" class="form-control" ng-model="course.courseName" />
+        </div>
+        <div class="col-sm-3"></div>
     </div>
-</div>
+    <div class="form-group">
+        <label for="courseDescription" class="col-sm-3 control-label">Descrição do Curso</label>
+        <div class="col-sm-6">
+            <input type="text" id="courseDescription" class="form-control" ng-model="course.description" />
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="hour" class="col-sm-3 control-label">Duração do curso - Horas</label>
+        <div class="col-sm-3">
+            <input type="number" id="hour" class="form-control" ng-model="course.hourDuration" />
+        </div>
+        <div class="col-sm-7"></div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="cost" class="col-sm-3 control-label">Preço</label>
+        <div class="col-sm-3">
+            <input type="text" id="cost" class="form-control" ng-model="course.cost" />
+        </div>
+        <div class="col-sm-7"></div>
+    </div>
+
+    <input type="submit" value="Save" class="btn btn-primary col-sm-offset-3" />
+    <input type="reset" value="Reset" ng-click="resetForm()"/>
+
+</form>
+

@@ -1,8 +1,18 @@
-<div ng-controller="UserController">
-    <input model="userName"></input>
-    <input model="userAdmissionDate"></input>
-    <input model="userPhone"></input>
-    <input model="userAddress"></input>
 
 
+<div >
+    <div class="row">
+        <div class="col-sm-6">
+            <input model="userName" ng-value="userName"></input>
+        </div>
+
+        <!-- /.col-sm-6 -->
+        <div class="col-sm-6">
+            <input model="userAdmissionDate"></input>
+        </div>
+        <!-- /.col-sm-6 -->
+    </div>
+    <button type="button" ng-click="getGithubRepos2()" class="btn btn-secondary">Secondary</button>
+    <!-- /.row -->
 </div>
+<!-- /.container -->

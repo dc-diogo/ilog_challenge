@@ -17,6 +17,16 @@ public class IlogApplication {
 		SpringApplication.run(IlogApplication.class, args);
 	}
 
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
 
+				registry.addMapping("/course/all")
+						.allowedOrigins("http://localhost:63342");
+			}
+		};
+	}
 
 }

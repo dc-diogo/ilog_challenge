@@ -9,6 +9,7 @@
   "author": "Diogo Viana",
   "license": "ISC",
   "dependencies": {
+    "angular-ui-bootstrap": "^2.5.6",
     "gulp": "^4.0.2"
   }
 }
