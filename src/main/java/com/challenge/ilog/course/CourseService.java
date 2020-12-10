@@ -1,35 +1,46 @@
 package com.challenge.ilog.course;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/course")
 public class CourseService {
 
-    @Autowired
-    private CourseController courseController;
+    private final CourseRepository courseRepository;
 
-    @GetMapping(path="/all")
-    public @ResponseBody Iterable<Course> getAllCourses() {
-        return courseController.getAllCourses();
+    public CourseService(CourseRepository courseRepository) {
+        this.courseRepository = courseRepository;
     }
 
-    @GetMapping(path="/findById")
-    public @ResponseBody Course getAllCourses(@RequestParam() int identifier){
-        return courseController.getCourseById(identifier);
+    public Iterable<Course> getAllCourses(){
+        return courseRepository.findAll();
     }
 
-    @PostMapping(path="/add")
-    public @ResponseBody String addNewCourse (@RequestBody Course course) {
-        return courseController.addCourse(course);
+    public Course getCourseById(int identifier){
+        Optional<Course> courseById = courseRepository.findById(identifier);
+        return courseById.orElse(null);
     }
 
-    @DeleteMapping(path="/delete")
-    public @ResponseBody String deleteCourse(@RequestParam int identifier){
-        return courseController.deleteCourse(identifier);
+    public String addCourse(Course course){
+        createNewCourse(course);
+        return null;
+    }
+
+    public String deleteCourse(int courseId){
+        Optional<Course> courseToDelete = courseRepository.findById(courseId);
+        courseRepository.delete(courseToDelete.get());
+        return "Deleted";
+    }
+
+    private Course createNewCourse(Course course){
+        Course courseToAdd = new Course(
+                course.getCourseName(),
+                course.getCourseDescription(),
+                course.getDuration(),
+                course.getCoursePrice()
+        );
+        return courseRepository.save(courseToAdd);
     }
 
 

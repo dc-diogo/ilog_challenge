@@ -1,0 +1,14 @@
+{
+  "name": "ilog-frontend",
+  "version": "1.0.0",
+  "description": "Ilog tech challenge frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Diogo Viana",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^4.0.2"
+  }
+}
