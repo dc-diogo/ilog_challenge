@@ -1,6 +1,5 @@
 package com.challenge.ilog.course;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.util.Optional;
@@ -28,6 +27,12 @@ public class CourseController {
         return null;
     }
 
+    public String deleteCourse(int courseId){
+        Optional<Course> courseToDelete = courseRepository.findById(courseId);
+        courseRepository.delete(courseToDelete.get());
+        return "Deleted";
+    }
+
     private Course createNewCourse(Course course){
         Course courseToAdd = new Course(
                 course.getCourseName(),
@@ -37,4 +42,6 @@ public class CourseController {
         );
         return courseRepository.save(courseToAdd);
     }
+
+
 }

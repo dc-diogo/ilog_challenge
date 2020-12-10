@@ -14,7 +14,6 @@ public class CourseService {
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Course> getAllCourses() {
-        System.out.println("teste");
         return courseController.getAllCourses();
     }
 
@@ -26,6 +25,11 @@ public class CourseService {
     @PostMapping(path="/add")
     public @ResponseBody String addNewCourse (@RequestBody Course course) {
         return courseController.addCourse(course);
+    }
+
+    @DeleteMapping(path="/delete")
+    public @ResponseBody String deleteCourse(@RequestParam int identifier){
+        return courseController.deleteCourse(identifier);
     }
 
 
