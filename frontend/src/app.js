@@ -11,9 +11,16 @@ angular
                 .state("courses", {
                     url:'/courses',
                     templateUrl: 'courses/course.list.html',
-                    controller: 'CourseController',
+                    controller: 'CourseController'
                 })
-
+                .state("coursedetails",{
+                    url:'courses/details',
+                    templateUrl: 'courses/course.crud.html',
+                    controller: 'CourseCrudController',
+                    params: {
+                        courseList: null
+                    }
+                })
                 .state("users",{
                     url:'/users',
                     templateUrl: 'users/user.list.html',
