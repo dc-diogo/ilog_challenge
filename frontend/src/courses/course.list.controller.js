@@ -3,14 +3,11 @@ angular
     .controller('CourseController', ['$scope', '$http', '$state', '$stateParams',
         function ($scope, $http, $state, $stateParams) {
 
-
-
             $scope.createOrEdit = function(){
                 $state.go("coursedetails", {
                     "courseList" : $scope.courseList
                 });
             }
-
 
             $scope.getAllCourses = function () {
                 const onSuccess = (resp) => {
@@ -43,6 +40,7 @@ angular
             }
 
             const init = () => {
+                //CourseService.retrieveAllCourses();
                 $scope.getAllCourses();
             }
 

@@ -4,13 +4,12 @@
 </select>
 
 <pre>
-    {{course}}
+     Id do curso: {{course.courseId}}
 </pre>
 
 
+
 <form class="form-horizontal" ng-submit="save()" role="form">
-
-
     <div class="form-group">
         <label for="courseName" class="col-sm-3 control-label" ng-required="true">Nome do Curso</label>
         <div class="col-sm-6">
@@ -43,7 +42,7 @@
         <div class="col-sm-7"></div>
     </div>
 
-    <input type="submit" value="Save" class="btn btn-primary col-sm-offset-3" />
+    <input type="submit" value="Salvar" class="btn btn-primary col-sm-offset-3" />
     <input type="reset" value="Reset" ng-click="resetForm()"/>
 
 </form>

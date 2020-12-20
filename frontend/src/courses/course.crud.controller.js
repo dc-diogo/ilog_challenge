@@ -4,27 +4,30 @@ angular
         ['$scope', '$http', '$state', '$stateParams',
         function ($scope, $http, $state, $stateParams) {
 
-            debugger;
-            console.log($stateParams)
 
             $scope.course = {
+                id: null,
                 courseName: null,
                 coursePrice: null,
                 hoursDuration: null,
                 courseDescription: null
             }
 
+            $scope.save = function () {
+                console.log($scope.course)
+                debugger;
 
-            $scope.saveOrEdit = function () {
+                const onSuccess = (resp) => {
+                    $scope.courseList = resp.data;
+                }
+                const onError = (err) => {
+                    console.log(err);
+                    console.log("requisition error");
+                }
 
                 if ($scope.course.id === null){
                     //Saving new
-                    const onSuccess = (resp) => {
-                        $scope.courseList = resp.data;
-                    }
-                    const onError = (err) => {
-                        console.log("requisition error");
-                    }
+
 
                     $http({
                         url: 'http://localhost:8080/course/add',
@@ -37,7 +40,16 @@ angular
                         }
                     }).then(onSuccess, onError);
                 } else {
-                    //Saving new
+                    $http({
+                        url: 'http://localhost:8080/course/add',
+                        method: "POST",
+                        data: {
+                            "courseName" : $scope.course.courseName,
+                            "courseDescription" :  $scope.course.description,
+                            "duration": $scope.course.duration,
+                            "coursePrice": $scope.course.coursePrice
+                        }
+                    }).then(onSuccess, onError);
                 }
 
             }
@@ -49,7 +61,7 @@ angular
             const convertArrayToObject = (array, key) => {
                 const initialValue = {};
                 return array.reduce((obj, item) => {
-                    return {
+                     return {
                         ...obj,
                         [item[key]]: item,
                     };
@@ -62,7 +74,6 @@ angular
                     updateDropdown(resp.data);
                 }
                 const onError = (err) => {
-                    debugger;
                     $scope.courseList = courseList;
                 }
 
