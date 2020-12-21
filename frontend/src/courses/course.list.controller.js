@@ -14,25 +14,29 @@ angular.module("main").controller("CourseController", [
       });
     };
 
-    const _convertMinutesToHour = function (courseList) {
+    const _parseDurationFromSecondsToHours = function (courseList) {
       let cursoAtualizado = [];
+      const DURATION = 3;
       angular.forEach(courseList, function (curso, value) {
-        const DURATION = 3;
-        curso[3] = curso[DURATION] / 60;
-        if (curso[DURATION] % 1 > 0.6) {
-          curso[DURATION] = curso[DURATION] + 1;
-          curso[DURATION] = curso[DURATION] - 0.6;
-        }
-        curso[DURATION] = curso[DURATION].toFixed(2);
-
+        curso[DURATION] = new Date(curso[DURATION] * 1000)
+          .toISOString()
+          .substr(11, 8);
         cursoAtualizado.push(curso);
       });
-      _updateCourseList(cursoAtualizado);
       return cursoAtualizado;
     };
 
-    const _updateCourseList = (courseListUpdated) => {
-      oficialCourseList = courseListUpdated;
+    const _parseCurrency = function (courseList) {
+      let cursoAtualizado = [];
+      const PRICE = 4;
+      angular.forEach(courseList, function (curso, value) {
+        curso[PRICE] = curso[PRICE].toLocaleString("pt-br", {
+          style: "currency",
+          currency: "BRL",
+        });
+        cursoAtualizado.push(curso);
+      });
+      return cursoAtualizado;
     };
 
     const _createCourseArray = function (objectToArray) {
@@ -54,7 +58,8 @@ angular.module("main").controller("CourseController", [
 
     const _init = () => {
       let courseList = _createCourseArray(cl);
-      courseList = _convertMinutesToHour(courseList);
+      courseList = _parseDurationFromSecondsToHours(courseList);
+      courseList = _parseCurrency(courseList);
       _updateTable(courseList);
       $scope.courseList = courseList;
     };
