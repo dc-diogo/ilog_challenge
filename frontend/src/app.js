@@ -11,7 +11,14 @@ angular
                 .state("courses", {
                     url:'/courses',
                     templateUrl: 'courses/course.list.html',
-                    controller: 'CourseController'
+                    controller: 'CourseController',
+                    resolve: {
+                        cl:  function(CourseService){
+                            return  CourseService.getAllCourses().then(function (response) {
+                                return response.data;
+                            });
+                        },
+                    }
                 })
                 .state("coursedetails",{
                     url:'courses/details',
