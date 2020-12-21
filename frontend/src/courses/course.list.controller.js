@@ -1,29 +1,13 @@
 angular
     .module("main")
-    .controller('CourseController', ['$scope', '$http', '$state', '$stateParams',
-        function ($scope, $http, $state, $stateParams) {
+    .controller('CourseController', ['$scope', '$http', '$state', '$stateParams', 'CourseService',
+        function ($scope, $http, $state, $stateParams, CourseService) {
 
             $scope.createOrEdit = function(){
                 $state.go("coursedetails", {
                     "courseList" : $scope.courseList
                 });
             }
-
-            $scope.getAllCourses = function () {
-                const onSuccess = (resp) => {
-                    $scope.courseList = resp.data;
-                    $scope.updateTable();
-                }
-                const onError = (err) => {
-                    $scope.courseList = courseList;
-                }
-
-                $http({
-                    url: 'http://localhost:8080/course/all',
-                    method: "GET",
-                    //data: { 'course' : $scope.course }
-                }).then(onSuccess, onError);
-            };
 
             $scope.updateTable = function () {
                 let employee = $scope.courseList.map(Object.values)
@@ -39,10 +23,21 @@ angular
                 document.getElementById("courseTable").innerHTML += tablecontents;
             }
 
-            const init = () => {
-                //CourseService.retrieveAllCourses();
-                $scope.getAllCourses();
+            const _getCourses = () => {
+                const onSuccess = (resp) => {
+                    $scope.courseList = resp.data;
+                    $scope.updateTable();
+                }
+                const onError = (err) => {
+                    console.log(err);
+                }
+                CourseService.getAllCourses(onSuccess, onError);
             }
 
-            init();
+            const _init = () => {
+                _getCourses();
+            }
+
+            _init();
+
         }])
