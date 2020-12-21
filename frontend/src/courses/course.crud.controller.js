@@ -4,6 +4,10 @@ angular
         ['$scope', '$http', '$state', '$stateParams',
         function ($scope, $http, $state, $stateParams) {
 
+        debugger;
+        console.log($stateParams.courseList);
+
+
 
             $scope.course = {
                 id: null,
@@ -84,10 +88,19 @@ angular
                 }).then(onSuccess, onError);
             };
 
-
+            const _getCourses = () => {
+                const onSuccess = (resp) => {
+                    $scope.courseList = resp.data;
+                    $scope.updateTable();
+                }
+                const onError = (err) => {
+                    console.log(err);
+                }
+                CourseService.getAllCourses(onSuccess, onError);
+            }
 
             const init = () => {
-                $scope.getAllCourses();
+                _getCourses();
             }
 
             init();
