@@ -23,15 +23,23 @@ public class CourseController {
         return courseService.getCourseById(identifier);
     }
 
+    //TODO: Change the return for some kind of response;
     @PostMapping(path="/add")
     public @ResponseBody String addNewCourse (@RequestBody Course course) {
         return courseService.addCourse(course);
     }
 
-    @DeleteMapping(path="/delete")
-    public @ResponseBody String deleteCourse(@RequestParam int identifier){
-        return courseService.deleteCourse(identifier);
+    //TODO: Change the return for some kind of response;
+    @DeleteMapping(path="/remove")
+    public @ResponseBody String removeCourse(@RequestParam() int identifier){
+        System.out.println("Chegou aqui");
+        return courseService.removeCourse(identifier);
     }
 
+    //TODO: Change the return for some kind of response;
+    @PutMapping(path="/alter")
+    public @ResponseBody String alterCourse(@RequestParam Course course) {
+        return courseService.alterCourse(course);
+    }
 
 }

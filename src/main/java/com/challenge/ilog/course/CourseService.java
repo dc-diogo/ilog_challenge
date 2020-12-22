@@ -27,8 +27,8 @@ public class CourseService {
         return null;
     }
 
-    public String deleteCourse(int courseId){
-        Optional<Course> courseToDelete = courseRepository.findById(courseId);
+    public String removeCourse(int identifier){
+        Optional<Course> courseToDelete = courseRepository.findById(identifier);
         courseRepository.delete(courseToDelete.get());
         return "Deleted";
     }
@@ -40,7 +40,19 @@ public class CourseService {
                 course.getDuration(),
                 course.getCoursePrice()
         );
+        //TODO: Handle possible exception that _save_ throws;
         return courseRepository.save(courseToAdd);
+    }
+
+    public String alterCourse(Course course){
+        Optional<Course> courseToAlter = courseRepository.findById(course.getCourseId());
+        if (courseToAlter.isPresent()){
+            courseRepository.deleteById(course.getCourseId());
+            courseRepository.save(course);
+            return "Sucessufully updated course.";
+        } else {
+            return "Oh-oh! Trouble updating course...";
+        }
     }
 
 

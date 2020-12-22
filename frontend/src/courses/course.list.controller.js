@@ -8,7 +8,13 @@ angular.module("main").controller("CourseController", [
   function ($scope, $http, $state, $stateParams, CourseService, cl) {
     let oficialCourseList = [];
 
-    $scope.createOrEdit = function () {
+    $scope.create = function () {
+      $state.go("newcourse", {
+        courseList: $scope.courseList,
+      });
+    };
+
+    $scope.alterOrRemove = function () {
       $state.go("coursedetails", {
         courseList: $scope.courseList,
       });
@@ -45,7 +51,6 @@ angular.module("main").controller("CourseController", [
 
     const _updateTable = (courseList) => {
       let tablecontents = "";
-
       for (let i = 0; i < courseList.length; i++) {
         tablecontents += "<tr>";
         for (let j = 0; j < courseList[i].length; j++) {
